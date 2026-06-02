@@ -1,0 +1,272 @@
+ *,
+ *::before,
+ *::after {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
+
+ body {
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     min-height: 100vh;
+     background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+     font-family: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+     user-select: none;
+     -webkit-tap-highlight-color: transparent;
+ }
+
+ /* ── Calculator Container ── */
+  .calculator {
+     background: #1c1c2e;
+     border-radius: 24px;
+     padding: 28px 20px 20px;
+     box-shadow:
+         0 25px 60px rgba(0, 0, 0, 0.5),
+         0 8px 20px rgba(0, 0, 0, 0.4),
+         inset 0 1px 0 rgba(255, 255, 255, 0.05);
+     width: 340px;
+     max-width: 95vw;
+     display: flex;
+     flex-direction: column;
+     gap: 20px;
+     border: 1px solid rgba(255, 255, 255, 0.08);
+ }
+
+ /* ── Display Screen ── */
+  .display {
+     background: #0d0d1a;
+     border-radius: 16px;
+     padding: 18px 20px;
+     text-align: right;
+     min-height: 100px;
+     display: flex;
+     flex-direction: column;
+     justify-content: flex-end;
+     box-shadow:
+         inset 0 3px 8px rgba(0, 0, 0, 0.6),
+         0 1px 0 rgba(255, 255, 255, 0.03);
+     border: 1px solid rgba(255, 255, 255, 0.06);
+     overflow: hidden;
+ }
+
+ .expression {
+     color: #7a7a9e;
+     font-size: 1rem;
+     font-weight: 400;
+     letter-spacing: 0.5px;
+     min-height: 22px;
+     word-break: break-all;
+     transition: color 0.2s;
+     margin-bottom: 4px;
+     line-height: 1.3;
+ }
+
+ .result {
+     color: #f0f0ff;
+     font-size: 2.6rem;
+     font-weight: 600;
+     letter-spacing: 0.5px;
+     word-break: break-all;
+     line-height: 1.2;
+     transition: font-size 0.15s ease;
+ }
+
+ .result.small {
+     font-size: 1.8rem;
+ }
+
+ .result.xsmall {
+     font-size: 1.3rem;
+ } 
+
+ /* ── Button Grid ── */
+  .buttons {
+     display: grid;
+     grid-template-columns: repeat(4, 1fr);
+     gap: 10px;
+ } 
+
+ /* ── Button Base Styles ── */
+  .btn {
+     background: #2a2a40;
+     border: none;
+     border-radius: 16px;
+     color: #e0e0f0;
+     font-size: 1.25rem;
+     font-weight: 500;
+     padding: 18px 10px;
+     cursor: pointer;
+     transition: all 0.15s ease;
+     box-shadow:
+         0 4px 8px rgba(0, 0, 0, 0.3),
+         0 1px 2px rgba(0, 0, 0, 0.4),
+         inset 0 1px 0 rgba(255, 255, 255, 0.04);
+     letter-spacing: 0.3px;
+     outline: none;
+     -webkit-tap-highlight-color: transparent;
+     position: relative;
+     overflow: hidden;
+ }
+
+ .btn::after {
+     content: '';
+     position: absolute;
+     inset: 0;
+     background: radial-gradient(circle at center,
+             rgba(255, 255, 255, 0.12) 0%,
+             transparent 70%);
+     opacity: 0;
+     transition: opacity 0.2s;
+     pointer-events: none;
+ }
+
+ .btn:hover::after {
+     opacity: 1;
+ }
+
+ .btn:hover {
+     background: #353550;
+     transform: translateY(-1px);
+     box-shadow:
+         0 6px 14px rgba(0, 0, 0, 0.4),
+         0 2px 4px rgba(0, 0, 0, 0.3),
+         inset 0 1px 0 rgba(255, 255, 255, 0.06);
+ }
+
+ .btn:active {
+     transform: scale(0.94);
+     box-shadow:
+         0 1px 3px rgba(0, 0, 0, 0.5),
+         inset 0 2px 6px rgba(0, 0, 0, 0.5);
+     transition: all 0.06s ease;
+     background: #1f1f33;
+ }
+
+ /* ── Operator Buttons ── */
+  .btn-operator {
+     background: #3d3560;
+     color: #c4b5fd;
+     font-weight: 600;
+     font-size: 1.35rem;
+ }
+
+ .btn-operator:hover {
+     background: #4b4178;
+     color: #ddd6fe;
+ }
+
+ .btn-operator:active {
+     background: #2e2850;
+ } 
+
+ /* ── Equals Button ── */
+ .btn-equals {
+     background: #7c3aed;
+     color: #ffffff;
+     font-weight: 700;
+     font-size: 1.5rem;
+     grid-column: span 1;
+     box-shadow:
+         0 4px 14px rgba(124, 58, 237, 0.45),
+         0 1px 2px rgba(0, 0, 0, 0.4),
+         inset 0 1px 0 rgba(255, 255, 255, 0.15);
+ }
+
+ .btn-equals:hover {
+     background: #8b5cf6;
+     box-shadow:
+         0 8px 22px rgba(124, 58, 237, 0.55),
+         0 2px 4px rgba(0, 0, 0, 0.3),
+         inset 0 1px 0 rgba(255, 255, 255, 0.2);
+ }
+
+ .btn-equals:active {
+     background: #6d28d9;
+     box-shadow:
+         0 2px 6px rgba(124, 58, 237, 0.3),
+         inset 0 2px 8px rgba(0, 0, 0, 0.5);
+ }
+
+ /* ── Clear / Delete Buttons ── */
+ .btn-clear {
+     background: #4a2040;
+     color: #fda4af;
+     font-weight: 600;
+ }
+
+ .btn-clear:hover {
+     background: #5c2d50;
+     color: #fecdd3;
+ }
+
+ .btn-clear:active {
+     background: #361a30;
+ }
+
+ .btn-delete {
+     background: #3a2a30;
+     color: #fca5a5;
+     font-weight: 600;
+     font-size: 1.15rem;
+ }
+
+ .btn-delete:hover {
+     background: #4a3540;
+     color: #fecaca;
+ }
+
+ .btn-delete:active {
+     background: #2a1c24;
+ }
+
+ /* ── Zero Button (spans 2 columns) ── */
+ .btn-zero {
+     grid-column: span 2;
+     border-radius: 16px;
+ }
+
+ /* ── Responsive adjustments ── */
+ @media (max-width: 380px) {
+     .calculator {
+         padding: 20px 14px 16px;
+         gap: 14px;
+         border-radius: 20px;
+     }
+
+     .buttons {
+         gap: 7px;
+     }
+
+     .btn {
+         padding: 15px 8px;
+         font-size: 1.1rem;
+         border-radius: 12px;
+     }
+
+     .btn-operator {
+         font-size: 1.2rem;
+     }
+
+     .btn-equals {
+         font-size: 1.3rem;
+     }
+
+     .result {
+         font-size: 2.2rem;
+     }
+
+     .result.small {
+         font-size: 1.5rem;
+     }
+
+     .result.xsmall {
+         font-size: 1.1rem;
+     }
+
+     .display {
+         padding: 14px 16px;
+         min-height: 80px;
+     }
+ }

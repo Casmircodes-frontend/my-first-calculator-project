@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator - By Casmir Dev</title>
+</head>
+
+<body>
+    <div class="calculator">
+        <!-- Display -->
+        <div class="display">
+            <div class="expression" id="expression"></div>
+            <div class="result" id="result">0</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <!-- Row 1: Clear, Delete, %, / -->
+            <button class="btn btn-clear" data-action="clear" aria-label="Clear all">AC</button>
+            <button class="btn btn-delete" data-action="delete" aria-label="Delete last character">⌫</button>
+            <button class="btn btn-operator" data-action="operator" data-value="%" aria-label="Percent">%</button>
+            <button class="btn btn-operator" data-action="operator" data-value="/" aria-label="Divide">÷</button>
+
+            <!-- Row 2: 7, 8, 9, * -->
+            <button class="btn" data-action="number" data-value="7">7</button>
+            <button class="btn" data-action="number" data-value="8">8</button>
+            <button class="btn" data-action="number" data-value="9">9</button>
+            <button class="btn btn-operator" data-action="operator" data-value="*" aria-label="Multiply">×</button>
+
+            <!-- Row 3: 4, 5, 6, - -->
+            <button class="btn" data-action="number" data-value="4">4</button>
+            <button class="btn" data-action="number" data-value="5">5</button>
+            <button class="btn" data-action="number" data-value="6">6</button>
+            <button class="btn btn-operator" data-action="operator" data-value="-" aria-label="Subtract">−</button>
+
+            <!-- Row 4: 1, 2, 3, + -->
+            <button class="btn" data-action="number" data-value="1">1</button>
+            <button class="btn" data-action="number" data-value="2">2</button>
+            <button class="btn" data-action="number" data-value="3">3</button>
+            <button class="btn btn-operator" data-action="operator" data-value="+" aria-label="Add">+</button>
+
+            <!-- Row 5: 0, ., = -->
+            <button class="btn btn-zero" data-action="number" data-value="0">0</button>
+            <button class="btn" data-action="number" data-value=".">.</button>
+            <button class="btn btn-equals" data-action="equals" aria-label="Calculate result">=</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
